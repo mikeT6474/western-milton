@@ -1,1 +1,1 @@
-# western-milton
+# Western Milton
