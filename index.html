@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Western Milton</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+
+        
+        .title {
+            font-family: "Orbitron", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+            color: white;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .title span {
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="title" class="title"></div>
+    <script>  
+        // Write Title
+        function revealTitleStatic(elementId, text, delay = 100) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = ''; // Clear any existing content
+
+            // Create a span for each character
+            const spans = text.split('').map(char => {
+              const span = document.createElement('span');
+              span.textContent = char === ' ' ? '\u00A0' : char;
+              container.appendChild(span);
+              return span;
+            });
+
+            let index = 0;
+            function showNextLetter() {
+              if (index < spans.length) {
+                spans[index].style.opacity = 1;
+                index++;
+                setTimeout(showNextLetter, delay);
+              }
+            }
+
+            showNextLetter();
+          }
+
+          window.addEventListener("DOMContentLoaded", () => {
+            revealTitleStatic("title", "Western Milton", 225);
+          });
+    </script>
+</body>
+</html>
